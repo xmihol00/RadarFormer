@@ -8,6 +8,16 @@ from cruw.eval.rod.rod_eval_utils import accumulate, summarize
 
 from rodnet.utils.load_configs import load_configs_from_file
 
+import safe_gpu
+while True:
+    try:
+        safe_gpu.claim_gpus(1)
+        break
+    except:
+        print("Waiting for free GPU")
+        time.sleep(5)
+        pass
+
 olsThrs = np.around(np.linspace(0.5, 0.9, int(np.round((0.9 - 0.5) / 0.05) + 1), endpoint=True), decimals=2)
 recThrs = np.around(np.linspace(0.0, 1.0, int(np.round((1.0 - 0.0) / 0.01) + 1), endpoint=True), decimals=2)
 

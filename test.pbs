@@ -1,0 +1,13 @@
+#!/bin/bash
+#PBS -N radarformer_train
+#PBS -l select=1:ncpus=2:ngpus=1:mem_free=24G:gpu_ram=24G
+#PBS -l walltime=24:00:00
+#PBS -j oe
+#PBS -o test_radarformer.log
+
+cd "/homes/eva/xm/xmihol00"
+source setup.sh
+conda activate RadarFormer
+cd "/mnt/matylda5/xmihol00/RadarFormer"
+
+bash test.sh 

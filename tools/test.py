@@ -17,8 +17,16 @@ from rodnet.core.radar_processing import chirp_amp
 from rodnet.utils.visualization import visualize_test_img, visualize_test_img_wo_gt
 from rodnet.utils.load_configs import load_configs_from_file, parse_cfgs, update_config_dict
 from rodnet.utils.solve_dir import create_random_model_name
-from rodnet.models.backbones.T_RODNet import T_RODNet
 
+import safe_gpu
+while True:
+    try:
+        safe_gpu.claim_gpus(1)
+        break
+    except:
+        print("Waiting for free GPU")
+        time.sleep(5)
+        pass
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Test RODNet.')
